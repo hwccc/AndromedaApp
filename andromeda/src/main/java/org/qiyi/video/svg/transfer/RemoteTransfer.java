@@ -160,7 +160,7 @@ public class RemoteTransfer extends IRemoteTransfer.Stub implements IRemoteServi
 
     private Uri getDispatcherProviderUri() {
         StringBuffer sb = new StringBuffer();
-        sb.append("content://").append(currentAuthority).append(".").append(DispatcherProvider.URI_SUFFIX).append("/main");
+        sb.append("content://").append(currentAuthority).append(".").append(DispatcherConstants.URI_SUFFIX).append("/main");
         return Uri.parse(sb.toString());
     }
 

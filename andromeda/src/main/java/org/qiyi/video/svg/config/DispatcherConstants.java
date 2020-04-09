@@ -1,13 +1,14 @@
 package org.qiyi.video.svg.config;
 
-public interface DispatcherConstants {
+public class DispatcherConstants {
 
-    String[] PROJECTION_MAIN = {"main"};
+    public static final String[] PROJECTION_MAIN = {"main"};
 
-    String URI_SUFFIX = "qiyi.svg.dispatcher";
+    public static final String URI_SUFFIX = "qiyi.svg.dispatcher";
 
-    String AUTHORITY_SPEECH = "com.hwc.authority.speech";
+    public static String AUTHORITY_SPEECH = "com.hwc.authority.speech";
 
-    String AUTHORITY_DEFAULT = "com.hwc.authority.andromeda";
+    public static String AUTHORITY_DEFAULT = "com.hwc.authority.andromeda";
+
 
 }

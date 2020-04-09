@@ -39,10 +39,6 @@ import org.qiyi.video.svg.log.Logger;
 
 public class DispatcherProvider extends ContentProvider {
 
-    public static final String PROJECTION_MAIN[] = {"main"};
-
-    public static final String URI_SUFFIX="qiyi.svg.dispatcher";
-
     @Override
     public boolean onCreate() {
         return false;
