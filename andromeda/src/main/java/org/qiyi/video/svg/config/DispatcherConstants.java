@@ -10,5 +10,4 @@ public class DispatcherConstants {
 
     public static String AUTHORITY_DEFAULT = "com.hwc.authority.andromeda";
 
-
 }
