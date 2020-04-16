@@ -139,7 +139,17 @@ public class RemoteTransfer extends IRemoteTransfer.Stub implements IRemoteServi
         if (serviceTransfer == null || dispatcherProxy == null) {
             return null;
         }
-        return serviceTransfer.getAndSaveIBinder(serviceCanonicalName, dispatcherProxy);
+        BinderBean andSaveIBinder = serviceTransfer.getAndSaveIBinder(serviceCanonicalName, dispatcherProxy);
+        if (andSaveIBinder == null) {
+            // 重新释放 dispatcherProxy，修复主程序重启无法连接的问题
+            resetDispatcherProxy();
+            initDispatchProxyLocked();
+            if (serviceTransfer == null || dispatcherProxy == null) {
+                return null;
+            }
+            andSaveIBinder = serviceTransfer.getAndSaveIBinder(serviceCanonicalName, dispatcherProxy);
+        }
+        return andSaveIBinder;
     }
 
     private void registerCurrentTransfer() {
