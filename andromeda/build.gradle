@@ -1,5 +1,27 @@
 apply plugin: 'com.android.library'
 
+// 1.maven-插件
+apply plugin: 'maven'
+// 2.maven-信息
+ext {// ext is a gradle closure allowing the declaration of global properties
+    PUBLISH_GROUP_ID = 'com.github.hwccc'
+    PUBLISH_ARTIFACT_ID = 'AndromeSample'
+    PUBLISH_VERSION = '10.0.0'
+}
+
+// 3.maven-路径
+uploadArchives {
+    repositories.mavenDeployer {
+        repository(url: LOCAL_REPO_URL)
+        pom.project {
+            groupId project.PUBLISH_GROUP_ID
+            artifactId project.PUBLISH_ARTIFACT_ID
+            version project.PUBLISH_VERSION
+        }
+    }
+}
+
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
