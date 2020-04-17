@@ -1,0 +1,54 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="wang.imallen.blog.servicemanagerlib"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="16"
+8-->E:\studio\AndromedaApp\andromeda\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="29" />
+9-->E:\studio\AndromedaApp\andromeda\src\main\AndroidManifest.xml
+10
+11    <application>
+11-->E:\studio\AndromedaApp\andromeda\src\main\AndroidManifest.xml:5:5-31:19
+12        <service
+12-->E:\studio\AndromedaApp\andromeda\src\main\AndroidManifest.xml:6:9-14:19
+13            android:name="org.qiyi.video.svg.dispatcher.RemoteGuardService"
+13-->E:\studio\AndromedaApp\andromeda\src\main\AndroidManifest.xml:7:13-76
+14            android:enabled="true"
+14-->E:\studio\AndromedaApp\andromeda\src\main\AndroidManifest.xml:8:13-35
+15            android:exported="true"
+15-->E:\studio\AndromedaApp\andromeda\src\main\AndroidManifest.xml:9:13-36
+16            android:process=":guard" >
+16-->E:\studio\AndromedaApp\andromeda\src\main\AndroidManifest.xml:10:13-37
+17            <intent-filter>
+17-->E:\studio\AndromedaApp\andromeda\src\main\AndroidManifest.xml:11:13-13:29
+18                <action android:name="wang.imallen.blog.guard" />
+18-->E:\studio\AndromedaApp\andromeda\src\main\AndroidManifest.xml:12:17-66
+18-->E:\studio\AndromedaApp\andromeda\src\main\AndroidManifest.xml:12:25-63
+19            </intent-filter>
+20        </service>
+21
+22        <!--
+23            service
+24            android:name="org.qiyi.video.svg.dispatcher.DispatcherService"
+25            android:enabled="true"
+26            android:exported="false"
+27            android:process=":downloader"
+28            /
+29        -->
+30
+31
+32        <!--
+33            provider
+34            android:authorities="org.qiyi.video.svg.dispatcher"
+35            android:exported="false"
+36            android:name="org.qiyi.video.svg.dispatcher.DispatcherProvider"
+37            android:process=":downloader"
+38            /
+39        -->
+40
+41    </application>
+42
+43</manifest>
