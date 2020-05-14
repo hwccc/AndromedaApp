@@ -19,7 +19,7 @@ public class DispatcherConstants {
     /**
      * 底层通信授权
      */
-    public static String AUTHORITY_UNDERLYING_COMMUNICATION = "com.hwc.authority.underlying.communication";
+    public static String AUTHORITY_BOTTOM_COMMUNICATION = "com.hwc.authority.bottom.communication";
 
 
 }
