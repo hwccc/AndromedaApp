@@ -19,7 +19,7 @@ public class DispatcherConstants {
     /**
      * 底层消息授权
      */
-    public static String AUTHORITY_BOTTOM_NEWS = "com.hwc.authority.bottom.news";
+    public static String AUTHORITY_BOTTOM_MESSAGE = "com.hwc.authority.bottom.message";
 
 
 }
