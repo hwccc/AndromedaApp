@@ -6,27 +6,27 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="16"
-8-->E:\studio\AndromedaSample\andromeda\src\main\AndroidManifest.xml
+8-->E:\studio\AndromedaApp\andromeda\src\main\AndroidManifest.xml
 9        android:targetSdkVersion="29" />
-9-->E:\studio\AndromedaSample\andromeda\src\main\AndroidManifest.xml
+9-->E:\studio\AndromedaApp\andromeda\src\main\AndroidManifest.xml
 10
 11    <application>
-11-->E:\studio\AndromedaSample\andromeda\src\main\AndroidManifest.xml:5:5-31:19
+11-->E:\studio\AndromedaApp\andromeda\src\main\AndroidManifest.xml:5:5-31:19
 12        <service
-12-->E:\studio\AndromedaSample\andromeda\src\main\AndroidManifest.xml:6:9-14:19
+12-->E:\studio\AndromedaApp\andromeda\src\main\AndroidManifest.xml:6:9-14:19
 13            android:name="org.qiyi.video.svg.dispatcher.RemoteGuardService"
-13-->E:\studio\AndromedaSample\andromeda\src\main\AndroidManifest.xml:7:13-76
+13-->E:\studio\AndromedaApp\andromeda\src\main\AndroidManifest.xml:7:13-76
 14            android:enabled="true"
-14-->E:\studio\AndromedaSample\andromeda\src\main\AndroidManifest.xml:8:13-35
+14-->E:\studio\AndromedaApp\andromeda\src\main\AndroidManifest.xml:8:13-35
 15            android:exported="true"
-15-->E:\studio\AndromedaSample\andromeda\src\main\AndroidManifest.xml:9:13-36
+15-->E:\studio\AndromedaApp\andromeda\src\main\AndroidManifest.xml:9:13-36
 16            android:process=":guard" >
-16-->E:\studio\AndromedaSample\andromeda\src\main\AndroidManifest.xml:10:13-37
+16-->E:\studio\AndromedaApp\andromeda\src\main\AndroidManifest.xml:10:13-37
 17            <intent-filter>
-17-->E:\studio\AndromedaSample\andromeda\src\main\AndroidManifest.xml:11:13-13:29
+17-->E:\studio\AndromedaApp\andromeda\src\main\AndroidManifest.xml:11:13-13:29
 18                <action android:name="wang.imallen.blog.guard" />
-18-->E:\studio\AndromedaSample\andromeda\src\main\AndroidManifest.xml:12:17-66
-18-->E:\studio\AndromedaSample\andromeda\src\main\AndroidManifest.xml:12:25-63
+18-->E:\studio\AndromedaApp\andromeda\src\main\AndroidManifest.xml:12:17-66
+18-->E:\studio\AndromedaApp\andromeda\src\main\AndroidManifest.xml:12:25-63
 19            </intent-filter>
 20        </service>
 21
