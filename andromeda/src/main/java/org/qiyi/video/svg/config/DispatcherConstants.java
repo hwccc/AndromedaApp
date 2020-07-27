@@ -14,7 +14,7 @@ public class DispatcherConstants {
     /**
      * 语音授权
      */
-    public static String AUTHORITY_SPEECH = "com.hwc.authority.speech";
+    public static String AUTHORITY_VOICE = "com.hwc.authority.voice";
 
     /**
      * 底层消息授权
