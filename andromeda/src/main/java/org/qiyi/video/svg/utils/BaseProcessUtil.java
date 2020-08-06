@@ -22,14 +22,28 @@ public class BaseProcessUtil {
      * @param context
      */
     public void init(Context context) {
+        init(context, true);
+    }
+
+    /**
+     * 初始化
+     * 服务端调用的时候参数为false
+     *
+     * @param context
+     */
+    public void init(Context context, boolean isClient) {
         this.context = context;
         Andromeda.init(context);
+        if (isClient) {
+            startMonitorRestart();
+        }
     }
 
     /**
      * 启动监听是否重启启动
      */
     public void startMonitorRestart() {
+        stopMonitorRestart();
         BroadcastUtil.getInstance().register(context);
     }
 
