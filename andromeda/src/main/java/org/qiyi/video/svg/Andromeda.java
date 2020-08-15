@@ -64,7 +64,7 @@ public class Andromeda {
             return;
         }
         appContext = context.getApplicationContext();
-        RemoteTransfer.init(context.getApplicationContext());
+        RemoteTransfer.getInstance().init(context.getApplicationContext());
         initFlag.set(true);
     }
 

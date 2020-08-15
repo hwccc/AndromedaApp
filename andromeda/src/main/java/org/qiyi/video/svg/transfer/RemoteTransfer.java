@@ -57,16 +57,9 @@ public class RemoteTransfer extends IRemoteTransfer.Stub implements IRemoteServi
 
     public static final int MAX_WAIT_TIME = 600;
 
-    private static RemoteTransfer sInstance;
+    private volatile static RemoteTransfer sInstance;
 
     private String currentAuthority = DispatcherConstants.AUTHORITY_DEFAULT;
-
-    //TODO 这样做有个弊端，就是没做到懒加载
-    public static void init(Context context) {
-        getInstance().setContext(context);
-
-        getInstance().sendRegisterInfo();
-    }
 
     public static RemoteTransfer getInstance() {
         if (null == sInstance) {
@@ -77,6 +70,16 @@ public class RemoteTransfer extends IRemoteTransfer.Stub implements IRemoteServi
             }
         }
         return sInstance;
+    }
+
+    /**
+     * 进行初始化，如果没有服务，则启动服务
+     *
+     * @param context
+     */
+    public void init(Context context) {
+        this.context = context;
+        sendRegisterInfo();
     }
 
     private Context context;
@@ -95,7 +98,9 @@ public class RemoteTransfer extends IRemoteTransfer.Stub implements IRemoteServi
         this.context = context;
     }
 
-    //让ServiceDispatcher反向注册到当前进程
+    /**
+     * 让ServiceDispatcher反向注册到当前进程
+     */
     private synchronized void sendRegisterInfo() {
         if (dispatcherProxy == null) {
             //后面考虑还是采用"has-a"的方式会更好
@@ -108,22 +113,26 @@ public class RemoteTransfer extends IRemoteTransfer.Stub implements IRemoteServi
         }
     }
 
-    private void initDispatchProxyLocked() {
+    private void initDispatchProxyLocked(boolean isCheck) {
         if (null == dispatcherProxy) {
             IBinder dispatcherBinder = getIBinderFromProvider();
             if (null != dispatcherBinder) {
                 Logger.d("the binder from provider is not null");
                 dispatcherProxy = IDispatcher.Stub.asInterface(dispatcherBinder);
-                registerCurrentTransfer();
+                if (dispatcherProxy != null) {
+                    registerCurrentTransfer();
+                }
             }
         }
-        if (null == dispatcherProxy) {
-            sendRegisterInfo();
-            try {
-                wait(MAX_WAIT_TIME);
-            } catch (InterruptedException ex) {
-                Logger.e("Attention! Wait out of time!");
-                ex.printStackTrace();
+        if (isCheck) {
+            if (null == dispatcherProxy) {
+                sendRegisterInfo();
+                try {
+                    wait(MAX_WAIT_TIME);
+                } catch (InterruptedException ex) {
+                    Logger.e("Attention! Wait out of time!");
+                    ex.printStackTrace();
+                }
             }
         }
     }
@@ -135,7 +144,7 @@ public class RemoteTransfer extends IRemoteTransfer.Stub implements IRemoteServi
         if (cacheBinderBean != null) {
             return cacheBinderBean;
         }
-        initDispatchProxyLocked();
+        initDispatchProxyLocked(false);
         if (serviceTransfer == null || dispatcherProxy == null) {
             return null;
         }
@@ -143,7 +152,7 @@ public class RemoteTransfer extends IRemoteTransfer.Stub implements IRemoteServi
         if (andSaveIBinder == null) {
             // 重新释放 dispatcherProxy，修复主程序重启无法连接的问题
             resetDispatcherProxy();
-            initDispatchProxyLocked();
+            initDispatchProxyLocked(true);
             if (serviceTransfer == null || dispatcherProxy == null) {
                 return null;
             }
@@ -191,7 +200,7 @@ public class RemoteTransfer extends IRemoteTransfer.Stub implements IRemoteServi
 
     @Override
     public synchronized void registerStubService(String serviceCanonicalName, IBinder stubBinder) {
-        initDispatchProxyLocked();
+        initDispatchProxyLocked(true);
         serviceTransfer.registerStubServiceLocked(serviceCanonicalName, stubBinder, context, dispatcherProxy, this);
     }
 
@@ -203,7 +212,7 @@ public class RemoteTransfer extends IRemoteTransfer.Stub implements IRemoteServi
      */
     @Override
     public synchronized void unregisterStubService(String serviceCanonicalName) {
-        initDispatchProxyLocked();
+        initDispatchProxyLocked(true);
         serviceTransfer.unregisterStubServiceLocked(serviceCanonicalName, context, dispatcherProxy);
     }
 
@@ -221,7 +230,7 @@ public class RemoteTransfer extends IRemoteTransfer.Stub implements IRemoteServi
 
     @Override
     public synchronized void publish(Event event) {
-        initDispatchProxyLocked();
+        initDispatchProxyLocked(true);
         eventTransfer.publishLocked(event, dispatcherProxy, this, context);
     }
 

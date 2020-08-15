@@ -5,10 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.text.TextUtils;
-import android.util.Log;
 
 import org.qiyi.video.svg.config.BroadcastConstants;
 import org.qiyi.video.svg.listener.OnBroadcastListener;
+import org.qiyi.video.svg.log.Logger;
 
 /**
  * 广播
@@ -43,7 +43,7 @@ public class BroadcastUtil {
         public void onReceive(Context context, Intent intent) {
             if (TextUtils.equals(intent.getAction(), BroadcastConstants.PROCESS_COMMUNICATION_ACTION)) {
                 String stringExtra = intent.getStringExtra(BroadcastConstants.EXTRA_AUTHORITY);
-                Log.d(TAG, "Receive process message：" + stringExtra);
+                Logger.d( "Receive process message：" + stringExtra);
                 if (onBroadcastListener != null && !TextUtils.isEmpty(stringExtra)) {
                     onBroadcastListener.onExtra(stringExtra);
                 }
