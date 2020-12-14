@@ -193,9 +193,12 @@ public class RemoteTransfer extends IRemoteTransfer.Stub implements IRemoteServi
                 return null;
             }
             return DispatcherCursor.stripBinder(cursor);
+        } catch (Exception e) {
+            Logger.d("RemoteTransfer-->getIBinderFromProvider() e: " + e.getMessage());
         } finally {
             IOUtils.closeQuietly(cursor);
         }
+        return null;
     }
 
     @Override
